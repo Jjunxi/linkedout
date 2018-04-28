@@ -26,6 +26,12 @@ app.use('/static', express.static(path.join(__dirname, '../client/build/static/'
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// @andy_testaxios
+// app.use('/data', function(req, res) {
+//   data = {name: 'jj', size:'18'};
+//   res.json(data);
+// })
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
