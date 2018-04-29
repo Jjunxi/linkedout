@@ -1,10 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import 'antd-mobile/dist/antd-mobile.min.css'
+import './index.css';
+import 'antd-mobile/dist/antd-mobile.min.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux';
+import reducers from './reducer';
+
+import Routes from './routes';
+
+const store = createStore(reducers, compose(
+	applyMiddleware(thunk),
+	window.devToolsExtension ? window.devToolsExtension() : ()=>{}
+))
+ReactDOM.render(
+    (<Provider store = {store}>
+        <Routes />
+     </Provider>
+    ), 
+    document.getElementById('root'));
+
 registerServiceWorker();
