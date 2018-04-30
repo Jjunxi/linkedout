@@ -31,8 +31,8 @@ function errorMsg(msg){
 	return { msg, type:ERROR_MSG };
 }
 
-export function regisger({user, pwd, repeatpwd, type}){
-	if (!user || !pwd || !type) {
+export function regisger({username, pwd, repeatpwd, type}){
+	if (!username || !pwd || !type) {
 		return errorMsg('用户名密码必须输入')
 	}
 	if (pwd !== repeatpwd) {
@@ -40,10 +40,10 @@ export function regisger({user, pwd, repeatpwd, type}){
     }
     
 	return dispatch => {
-		axios.post('/users/register',{user, pwd, type})
+		axios.post('/user/register',{username, pwd, type})
 			.then(res => {
 				if (res.status === 200 && res.data.code === 0) {
-					dispatch(registerSuccess({user, pwd, type}))
+					dispatch(registerSuccess({username, pwd, type}))
 				}else{
 					dispatch(errorMsg(res.data.msg))
 				}

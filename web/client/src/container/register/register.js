@@ -59,7 +59,7 @@ class Register extends React.Component{
 				<Logo></Logo>
 				<List>
 					<InputItem
-						onChange={v => this.handleChange('user', v)}>Username</InputItem>
+						onChange={v => this.handleChange('username', v)}>Username</InputItem>
 					<WhiteSpace />
 					<InputItem type="password"
 						onChange={v => this.handleChange('pwd', v)}>Password</InputItem>
