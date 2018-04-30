@@ -13,7 +13,7 @@ import reducers from './reducer';
 import Routes from './routes';
 
 const store = createStore(reducers, compose(
-	applyMiddleware(thunk),
+	applyMiddleware(thunk), // Async redux
 	window.devToolsExtension ? window.devToolsExtension() : ()=>{}
 ))
 ReactDOM.render(
