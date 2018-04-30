@@ -4,14 +4,14 @@ import Logo from '../../component/logo/logo';
 import {List, InputItem, WingBlank, WhiteSpace, Button, Toast} from 'antd-mobile'
 
 import {connect} from 'react-redux'
-import {login} from '../../redux/user.redux'
+import {login, clearMsg} from '../../redux/user.redux'
 
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 @connect(
 	state=>state.user,
-	{login}
+	{login, clearMsg}
 )
 class Login extends React.Component{
 	constructor(props) {
@@ -29,6 +29,7 @@ class Login extends React.Component{
 		this.setState({
 			[key]:val
 		});
+		this.props.clearMsg();
 	}
 
 	handleLogin(){
@@ -42,7 +43,7 @@ class Login extends React.Component{
 				<Logo></Logo>
 				<WingBlank>
 					<List>
-						{this.props.msg ? (Toast.fail(this.props.msg, 3)) : null}
+						{this.props.msg ? (Toast.fail(this.props.msg, 2)) : null}
 						<InputItem
 							onChange={v=>this.handleChange('username',v)}
 						>用户</InputItem>

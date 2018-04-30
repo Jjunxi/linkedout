@@ -12,7 +12,7 @@ const initState = {
 const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
-const LOAD_DATA = 'LOAD_DATA';
+const CLEAR_MSG = 'CLEAR_MSG';
 
 function registerSuccess(data){
 	return {type:REGISTER_SUCCESS, payload: data}
@@ -31,26 +31,31 @@ export function user(state = initState, action) {
     switch(action.type){
 		case REGISTER_SUCCESS:
 			return {
-						...state, 
-						msg:'', 
-						isAuth:true, 
-						...action.payload,
-						redirectTo:getRedirectPath(action.payload)
-					};
+				...state, 
+				msg:'', 
+				isAuth:true, 
+				...action.payload,
+				redirectTo:getRedirectPath(action.payload)
+			};
 		case LOGIN_SUCCESS:
 			return {
-						...state, 
-						msg:'', 
-						isAuth:true, 
-						...action.payload,
-						redirectTo:getRedirectPath(action.payload)
-					};
+				...state, 
+				msg:'', 
+				isAuth:true, 
+				...action.payload,
+				redirectTo:getRedirectPath(action.payload)
+			};
 		case ERROR_MSG:
 			return {
-						...state, 
-						msg: action.msg,
-						isAuth:false, 
-					};
+				...state, 
+				msg: action.msg,
+				isAuth:false, 
+			};
+		case CLEAR_MSG:
+			return {
+				...state,
+				msg: '',
+			}
 		default:
 			return state;
 	}
@@ -96,4 +101,8 @@ export function login({username, pwd}){
 				 }
 			});		
 	}
+}
+
+export function clearMsg() {
+	return {type: CLEAR_MSG};
 }

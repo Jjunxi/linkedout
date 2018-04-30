@@ -3,14 +3,14 @@ import Logo from '../../component/logo/logo';
 
 import { List, InputItem, WhiteSpace, Button, Radio, Toast } from 'antd-mobile';
 import {connect} from 'react-redux';
-import {regisger} from '../../redux/user.redux';
+import {regisger, clearMsg} from '../../redux/user.redux';
 
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 @connect(
 	state => state.user,
-	{regisger}
+	{regisger, clearMsg}
 )
 class Register extends React.Component{
 	constructor(props) {
@@ -34,6 +34,7 @@ class Register extends React.Component{
 		this.setState({
 			[key]: val
 		});
+		this.props.clearMsg();		
 	}
 
 	handleRegister() {
