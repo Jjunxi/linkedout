@@ -1,4 +1,5 @@
 {
-    "mongoDbUri": "mongodb://@localhost:27017/linkedout"
+    "mongoDbUri": "mongodb://@localhost:27017/linkedout",
+    "salt": "linkedout"
 }
   

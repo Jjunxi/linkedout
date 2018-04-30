@@ -1,10 +1,11 @@
 import React from 'react';
 import Logo from '../../component/logo/logo';
 
-import { List, InputItem, WhiteSpace, Button, Radio } from 'antd-mobile'
-import {connect} from 'react-redux'
-import {regisger} from '../../redux/user.redux'
+import { List, InputItem, WhiteSpace, Button, Radio, Toast } from 'antd-mobile';
+import {connect} from 'react-redux';
+import {regisger} from '../../redux/user.redux';
 
+import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 @connect(
@@ -15,7 +16,7 @@ class Register extends React.Component{
 	constructor(props) {
 		super(props);
 		this.state = {
-			user:'',
+			username:'',
 			pwd:'',
 			repeatpwd:'',
 			type:'genius' // 或者boss
@@ -52,12 +53,14 @@ class Register extends React.Component{
 	}
 
 	render(){
-		const RadioItem = Radio.RadioItem
+		const RadioItem = Radio.RadioItem;
 
 		return (
 			<div>
+				{this.props.redirectTo ? <Redirect to={this.props.redirectTo} />:null}
 				<Logo></Logo>
 				<List>
+					{this.props.msg ? (Toast.fail(this.props.msg, 3)) : null}				
 					<InputItem
 						onChange={v => this.handleChange('username', v)}>Username</InputItem>
 					<WhiteSpace />
