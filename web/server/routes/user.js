@@ -29,7 +29,9 @@ router.get('/info', function(req, res, next) {
 		}
 		if (doc) {
 			return res.json({code:0,data:doc});
-		}
+		} else {
+			return res.json({code:1, msg:'no data'});
+    }
 	})
 });
 

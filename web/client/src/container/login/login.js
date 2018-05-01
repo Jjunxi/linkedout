@@ -7,7 +7,6 @@ import {connect} from 'react-redux'
 import {login, clearMsg} from '../../redux/user.redux'
 
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 
 @connect(
 	state=>state.user,

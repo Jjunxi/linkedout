@@ -1,27 +1,34 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 
-import axios from 'axios';
-import { Button } from 'antd-mobile';
+import {connect} from 'react-redux';
+import {loadData} from '../../redux/user.redux';
+
+import { Redirect } from 'react-router-dom';
 
 // Auth is a common component, not a <Route>
 @withRouter
+@connect(
+	state => state.user,
+	{loadData}
+)
 class Auth extends React.Component{
     componentDidMount() {
-        axios.get('/users/info')
-             .then((res) => {
-                 if (res.status === 200) {
-                     if (res.data.code === 0) { // with user info
-                        
-                     } else {
-                        // this.props.history.push('/login');
-                     }
-                 }
-             }); 
-    }
+		const publicList = ['/login', '/register'];
+		const pathname = this.props.location.pathname;
+		if (publicList.indexOf(pathname) > -1) {
+			return null;
+        }
 
+        this.props.loadData();
+    }
+    
 	render(){
-		return null;
+		return (
+            <div>
+				{this.props.msg ? <Redirect to='/login' />:null}                
+            </div>
+        );
 	}
 }
 

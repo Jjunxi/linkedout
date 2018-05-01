@@ -13,18 +13,24 @@ const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
 const CLEAR_MSG = 'CLEAR_MSG';
+const LOAD_DATA = 'LOAD_DATA';
 
-function registerSuccess(data){
-	return {type:REGISTER_SUCCESS, payload: data}
+function register_success(data){
+	return {type:REGISTER_SUCCESS, payload: data};
 }
 
-function loginSuccess(data){
-	return {type:LOGIN_SUCCESS, payload: data}
+function login_success(data){
+	return {type:LOGIN_SUCCESS, payload: data};
 }
 
-function errorMsg(msg){
+function error_msg(msg){
 	return {type: ERROR_MSG, msg: msg};
 }
+
+function load_data(data){
+	return {type: LOAD_DATA, payload: data};
+}
+
 
 // reducer
 export function user(state = initState, action) {
@@ -55,7 +61,12 @@ export function user(state = initState, action) {
 			return {
 				...state,
 				msg: '',
-			}
+			};
+		case LOAD_DATA:
+			return {
+				...state, 
+				...action.payload
+			};
 		default:
 			return state;
 	}
@@ -64,10 +75,10 @@ export function user(state = initState, action) {
 export function regisger({username, pwd, repeatpwd, type}){
 	// @andy_sync
 	if (!username || !pwd || !type) {
-		return errorMsg('用户名密码必须输入')
+		return error_msg('用户名密码必须输入')
 	}
 	if (pwd !== repeatpwd) {
-		return errorMsg('密码和确认密码不同')
+		return error_msg('密码和确认密码不同')
     }
 	
 	// @andy_async
@@ -76,9 +87,9 @@ export function regisger({username, pwd, repeatpwd, type}){
 			 .then(res => {
 				 if (res.status === 200 && res.data.code === 0) {
 					 //  dispatch(registerSuccess({username, pwd, type}));
-					 dispatch(registerSuccess(res.data.data));
+					 dispatch(register_success(res.data.data));
 				 }else{
-					 dispatch(errorMsg(res.data.msg));
+					 dispatch(error_msg(res.data.msg));
 				 }
 			});		
 	}
@@ -87,7 +98,7 @@ export function regisger({username, pwd, repeatpwd, type}){
 export function login({username, pwd}){
 	// @andy_sync
 	if (!username || !pwd) {
-		return errorMsg('用户名密码必须输入')
+		return error_msg('用户名密码必须输入')
 	}
 	
 	// @andy_async
@@ -95,9 +106,9 @@ export function login({username, pwd}){
 		axios.post('/user/login',{username, pwd})
 			 .then(res => {
 				 if (res.status === 200 && res.data.code === 0) {
-				 	 dispatch(loginSuccess(res.data.data))
+				 	 dispatch(login_success(res.data.data))
 				 }else{
-					 dispatch(errorMsg(res.data.msg))
+					 dispatch(error_msg(res.data.msg))
 				 }
 			});		
 	}
@@ -105,4 +116,19 @@ export function login({username, pwd}){
 
 export function clearMsg() {
 	return {type: CLEAR_MSG};
+}
+
+export function loadData() {
+	return dispatch => {
+		axios.get('/user/info')
+             .then(res=>{
+				if (res.status === 200) {
+					if (res.data.code === 0) {
+						dispatch(load_data(res.data.data));
+					}else{
+						dispatch(error_msg(res.data.msg));
+					}
+				}
+			});
+	}
 }

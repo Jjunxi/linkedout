@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 
 import Login from './container/login/login';
@@ -11,9 +11,11 @@ class Routes extends React.Component{
 		return (
 			<BrowserRouter>
 				<div>
-					{/* <Auth></Auth> */}
-					<Route path='/login' component={Login}></Route>
-					<Route path='/register' component={Register}></Route>
+					<Auth></Auth>
+					<Switch>
+						<Route path='/login' component={Login}></Route>
+						<Route path='/register' component={Register}></Route>
+					</Switch>
 				</div>
 			</BrowserRouter>
 		)
