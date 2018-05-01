@@ -28,7 +28,8 @@ class Login extends React.Component{
 		this.setState({
 			[key]:val
 		});
-		this.props.clearMsg();
+		if (this.props.msg)
+			this.props.clearMsg();
 	}
 
 	handleLogin(){

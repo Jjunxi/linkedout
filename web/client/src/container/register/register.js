@@ -33,7 +33,8 @@ class Register extends React.Component{
 		this.setState({
 			[key]: val
 		});
-		this.props.clearMsg();		
+		(this.props.msg) ?
+			this.props.clearMsg() : null;	
 	}
 
 	handleRegister() {
