@@ -119,3 +119,16 @@ export function loadData() {
 			});
 	}
 }
+
+export function update(data){
+	return dispatch=>{
+		axios.post('/user/update',data)
+			.then(res=>{
+				if (res.status === 200 && res.data.code === 0) {
+					dispatch(auth_success(res.data.data));
+				}else{
+					dispatch(error_msg(res.data.msg));
+				}
+			})
+	}
+}
