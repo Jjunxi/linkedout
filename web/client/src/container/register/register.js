@@ -33,8 +33,9 @@ class Register extends React.Component{
 		this.setState({
 			[key]: val
 		});
-		(this.props.msg) ?
-			this.props.clearMsg() : null;	
+		if (this.props.error) {
+			this.props.clearMsg();	
+		}
 	}
 
 	handleRegister() {
@@ -61,7 +62,7 @@ class Register extends React.Component{
 				{this.props.redirectTo ? <Redirect to={this.props.redirectTo} />:null}
 				<Logo></Logo>
 				<List>
-					{this.props.msg ? (Toast.fail(this.props.msg, 3)) : null}				
+					{this.props.error ? (Toast.fail(this.props.msg, 3)) : null}				
 					<InputItem
 						onChange={v => this.handleChange('username', v)}>Username</InputItem>
 					<WhiteSpace />

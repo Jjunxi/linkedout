@@ -1,9 +1,16 @@
 import axios from 'axios';
 import { getRedirectPath } from '../util';
 
+// const initState = {
+// 	redirectTo: '',
+// 	msg: '',
+// 	username: '',
+// 	type: ''
+// };
+
 const initState = {
+	error: false,
 	redirectTo: '',
-	isAuth: false,
 	msg: '',
 	username: '',
 	type: ''
@@ -26,6 +33,9 @@ function load_data(data){
 	return {type: LOAD_DATA, payload: data};
 }
 
+function clear_msg() {
+	return {type: CLEAR_MSG};
+}
 
 // reducer
 export function user(state = initState, action) {
@@ -33,21 +43,21 @@ export function user(state = initState, action) {
 		case AUTH_SUCCESS:
 			return {
 				...state, 
-				msg:'', 
-				isAuth:true, 
+				msg: '', 
 				...action.payload,
-				redirectTo:getRedirectPath(action.payload)
+				redirectTo: getRedirectPath(action.payload)
 			};
 		case ERROR_MSG:
 			return {
 				...state, 
 				msg: action.msg,
-				isAuth:false, 
+				error: true
 			};
 		case CLEAR_MSG:
 			return {
 				...state,
 				msg: '',
+				error: false
 			};
 		case LOAD_DATA:
 			return {
@@ -102,6 +112,7 @@ export function login({username, pwd}){
 }
 
 export function clearMsg() {
+	// clear_msg();
 	return {type: CLEAR_MSG};
 }
 

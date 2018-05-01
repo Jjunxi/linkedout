@@ -13,12 +13,21 @@ import { Redirect } from 'react-router-dom';
 	{loadData}
 )
 class Auth extends React.Component{
+	constructor(props) {
+		super(props);
+		this.state = {
+			otherPage: false
+		}
+	}
+
     componentDidMount() {
 		const publicList = ['/login', '/register'];
 		const pathname = this.props.location.pathname;
 		if (publicList.indexOf(pathname) > -1) {
 			return null;
-        }
+		}
+		
+		this.setState({otherPage: true});
 
         this.props.loadData();
     }
@@ -26,7 +35,7 @@ class Auth extends React.Component{
 	render(){
 		return (
             <div>
-				{this.props.msg ? <Redirect to='/login' />:null}                
+				{this.props.error&&this.state.otherPage ? <Redirect to='/login' />:null}                
             </div>
         );
 	}
