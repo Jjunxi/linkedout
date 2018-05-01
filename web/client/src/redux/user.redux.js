@@ -1,13 +1,6 @@
 import axios from 'axios';
 import { getRedirectPath } from '../util';
 
-// const initState = {
-// 	redirectTo: '',
-// 	msg: '',
-// 	username: '',
-// 	type: ''
-// };
-
 const initState = {
 	error: false,
 	redirectTo: '',
@@ -18,7 +11,7 @@ const initState = {
 
 const AUTH_SUCCESS = 'AUTH_SUCCESS';
 const ERROR_MSG = 'ERROR_MSG';
-const CLEAR_MSG = 'CLEAR_MSG';
+const CLEAR_ERR_MSG = 'CLEAR_ERR_MSG';
 const LOAD_DATA = 'LOAD_DATA';
 
 function auth_success(data){
@@ -31,10 +24,6 @@ function error_msg(msg){
 
 function load_data(data){
 	return {type: LOAD_DATA, payload: data};
-}
-
-function clear_msg() {
-	return {type: CLEAR_MSG};
 }
 
 // reducer
@@ -53,7 +42,7 @@ export function user(state = initState, action) {
 				msg: action.msg,
 				error: true
 			};
-		case CLEAR_MSG:
+		case CLEAR_ERR_MSG:
 			return {
 				...state,
 				msg: '',
@@ -111,9 +100,9 @@ export function login({username, pwd}){
 	}
 }
 
-export function clearMsg() {
+export function clearErrMsg() {
 	// clear_msg();
-	return {type: CLEAR_MSG};
+	return {type: CLEAR_ERR_MSG};
 }
 
 export function loadData() {

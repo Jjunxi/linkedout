@@ -4,13 +4,13 @@ import Logo from '../../component/logo/logo';
 import {List, InputItem, WingBlank, WhiteSpace, Button, Toast} from 'antd-mobile'
 
 import {connect} from 'react-redux'
-import {login, clearMsg} from '../../redux/user.redux'
+import {login, clearErrMsg} from '../../redux/user.redux'
 
 import { Redirect } from 'react-router-dom';
 
 @connect(
 	state=>state.user,
-	{login, clearMsg}
+	{login, clearErrMsg}
 )
 class Login extends React.Component{
 	constructor(props) {
@@ -29,7 +29,7 @@ class Login extends React.Component{
 			[key]:val
 		});
 		if (this.props.msg)
-			this.props.clearMsg();
+			this.props.clearErrMsg();
 	}
 
 	handleLogin(){
