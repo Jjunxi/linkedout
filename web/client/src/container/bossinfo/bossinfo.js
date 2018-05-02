@@ -65,7 +65,7 @@ class BossInfo extends React.Component{
 					
 				</TextareaItem>
 				<Button 
-					onClick={this.update(this.state)}
+					onClick={this.update}
 					type='primary'>Update</Button>
 			</div>
 			
