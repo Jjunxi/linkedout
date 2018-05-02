@@ -1,3 +1,4 @@
+
 import React from 'react';
 import {NavBar,InputItem, TextareaItem, Button} from 'antd-mobile';
 import AvatarSelector from '../../component/avatarselector/avatarselector';
@@ -9,37 +10,26 @@ import {update} from '../../redux/user.redux';
 	state=>state.user,
 	{update}
 )
-class BossInfo extends React.Component{
+class GeniusInfo extends React.Component{
 	constructor(props) {
-		super(props);
+		super(props)
 		this.state = {
 			title:'',
-			desc:'',
-			company:'',
-			money:''
-        };
-        
-        this.update = this.update.bind(this);
-    }
-    
+			desc:''
+		}
+	}
 	onChange(key,val){
 		this.setState({
 			[key]:val
-		});
-    }
-
-    update() {
-        console.log('client update');
-		this.props.update(this.state);
-    }
-
+		})
+	}
 	render(){
-		// const path = this.props.location.pathname;
-		// const redirect = this.props.redirectTo;
+		// const path = this.props.location.pathname
+		// const redirect = this.props.redirectTo
 		return (
 			<div>
 				{/* {redirect&&redirect!==path? <Redirect to={this.props.redirectTo}></Redirect> :null} */}
-				<NavBar mode="dark" >BOSS完善信息页</NavBar>
+				<NavBar mode="dark" >牛人完善信息页</NavBar>
 				<AvatarSelector 
 					selectAvatar={(imgname)=>{
 						this.setState({
@@ -48,29 +38,24 @@ class BossInfo extends React.Component{
 					}}
 				></AvatarSelector>
 				<InputItem onChange={(v)=>this.onChange('title',v)}>
-					招聘职位
-				</InputItem>
-				<InputItem onChange={(v)=>this.onChange('company',v)}>
-					公司名称
-				</InputItem>
-				<InputItem onChange={(v)=>this.onChange('money',v)}>
-					职位薪资
+					求职岗位
 				</InputItem>
 				<TextareaItem
 					onChange={(v)=>this.onChange('desc',v)}
 					rows={3}
 					autoHeight
-					title='职位要求'
+					title='个人简介'
 				>
-					
 				</TextareaItem>
 				<Button 
-					onClick={this.update}
-					type='primary'>Update</Button>
+					onClick={()=>{
+						this.props.update(this.state);
+					}}
+					type='primary'>Save</Button>
 			</div>
 			
 		)
 	}
 }
 
-export default BossInfo;
+export default GeniusInfo;

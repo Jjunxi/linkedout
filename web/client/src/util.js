@@ -1,6 +1,8 @@
-export function getRedirectPath({type}){
+export function getRedirectPath({type,avatar}){
 	// user.type /boss /genius
-	console.log(type);
-	let url = '/' + type + 'info';
+	let url = '/' + type;
+	if (!avatar) {
+		url += 'info';
+	}
 	return url;
 }
