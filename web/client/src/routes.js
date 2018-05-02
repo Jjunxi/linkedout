@@ -20,7 +20,6 @@ class Routes extends React.Component{
 						<Route path='/register' component={Register}></Route>
 						<Route path='/bossinfo' component={BossInfo}></Route>
 						<Route path='/geniusinfo' component={GeniusInfo}></Route>
-						
 					</Switch>
 				</div>
 			</BrowserRouter>

@@ -26,7 +26,13 @@ class Auth extends React.Component {
 
     this.setState({otherPage: true});
 
-    this.props.loadData();
+	this.props.loadData();
+	
+	// async operation cannot get error immediately
+	// console.log(this.props.error);
+	// if (this.props.error && this.state.otherPage) {
+	// 	this.props.history.push('/login')
+	// }
   }
 
   render() {
@@ -36,7 +42,7 @@ class Auth extends React.Component {
           ? <Redirect to='/login'/>
           : null}
       </div>
-    );
+	);
   }
 }
 
