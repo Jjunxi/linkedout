@@ -1,15 +1,21 @@
 import React from 'react';
-import {NavBar} from 'antd-mobile';
+import {connect} from 'react-redux';
+import {getFriendList} from '../../redux/friend.redux';
+import FriendList from '../friendlist/friendlist';
 
-class Genius extends React.Component {
-  render() {
-    return (
-      <div>
-genius content
-      </div>
+@connect(
+	state=>state.friend,
+	{getFriendList}
+)
+class Genius extends React.Component{
+	componentDidMount() {
+		this.props.getFriendList('boss');
+	}
+	render(){
+		return (
+      <FriendList friendList={this.props.friendList}></FriendList>
+    );
+	}
 
-    )
-  }
 }
-
 export default Genius;
