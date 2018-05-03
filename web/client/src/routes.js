@@ -6,6 +6,10 @@ import Login from './container/login/login';
 import Register from './container/register/register';
 import BossInfo from './container/bossinfo/bossinfo';
 import GeniusInfo from './container/geniusinfo/geniusinfo';
+import Dashboard from './component/dashboard/dashboard';
+import Boss from './container/boss/boss';
+import Genius from './container/genius/genius';
+
 import Auth from './component/auth/auth';
 
 
@@ -20,6 +24,9 @@ class Routes extends React.Component{
 						<Route path='/register' component={Register}></Route>
 						<Route path='/bossinfo' component={BossInfo}></Route>
 						<Route path='/geniusinfo' component={GeniusInfo}></Route>
+						{/* <Route path='/boss' component={Boss}></Route> */}
+						{/* <Route path='/genius' component={Genius}></Route> */}
+						<Route component={Dashboard}></Route>
 					</Switch>
 				</div>
 			</BrowserRouter>
