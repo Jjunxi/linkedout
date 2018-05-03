@@ -8,7 +8,7 @@ const _filter = {'pwd':0,'__v':0}
 /* GET users listing. */
 router.get('/list',function(req, res){
 	User.find({},function(err,doc){
-		return res.json(doc)
+		return res.json(doc);
 	});
 });
 
