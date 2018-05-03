@@ -12,6 +12,13 @@ router.get('/list',function(req, res){
 	});
 });
 
+router.get('/friendlist',function(req, res){
+	const { type } = req.query;
+	User.find({type},function(err,doc){
+		return res.json({code:0,data:doc});
+	})
+})
+
 router.get('/clear',function(req, res){
   User.remove({}, function(err, doc){
     return res.send('ok');

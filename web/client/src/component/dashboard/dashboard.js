@@ -53,15 +53,21 @@ class Dashboard extends React.Component {
     return (
       <div>
         <NavHeader data={navList}></NavHeader>
+		
         <div style={{
           marginTop: 45
         }}>
-          <Switch>
-            <Route path='/boss' component={Boss}></Route>
-            <Route path='/genius' component={Genius}></Route>
-            <Route path='/msg' component={Msg}></Route>
-            <Route path='/me' component={Me}></Route>
-          </Switch>
+			<Switch>
+				{navList.map(v=>(
+					<Route key={v.path} path={v.path} component={v.component}></Route>
+				))}
+			</Switch>
+			{/* <Switch>
+				<Route path='/boss' component={Boss}></Route>
+				<Route path='/genius' component={Genius}></Route>
+				<Route path='/msg' component={Msg}></Route>
+				<Route path='/me' component={Me}></Route>
+			</Switch> */}
         </div>
 						
 		<NavFooter data={navList}></NavFooter>
