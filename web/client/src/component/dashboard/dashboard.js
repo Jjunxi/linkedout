@@ -5,13 +5,10 @@ import NavHeader from '../navheader/navheader';
 import NavFooter from '../navfooter/navfooter';
 import Boss from '../../component/boss/boss';
 import Genius from '../../component/genius/genius';
+import Me from '../../component/me/me';
 
 function Msg() {
   return <h2>消息列表页面</h2>
-}
-
-function Me() {
-  return <h2>Me</h2>
 }
 
 @connect(state => state)
@@ -53,7 +50,7 @@ class Dashboard extends React.Component {
     return (
       <div>
         <NavHeader data={navList}></NavHeader>
-		
+
         <div style={{
           marginTop: 45
         }}>
