@@ -7,8 +7,6 @@ import Register from './container/register/register';
 import BossInfo from './container/bossinfo/bossinfo';
 import GeniusInfo from './container/geniusinfo/geniusinfo';
 import Dashboard from './component/dashboard/dashboard';
-import Boss from './container/boss/boss';
-import Genius from './container/genius/genius';
 
 import Auth from './component/auth/auth';
 

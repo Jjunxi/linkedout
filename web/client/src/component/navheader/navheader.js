@@ -10,6 +10,8 @@ class NavHeader extends React.Component {
 
   render() {
     const {pathname} = this.props.location;
+    console.log(pathname);
+    
     const navList = this.props.data.filter(v => !v.hide);
     return (
       <NavBar className='fixd-header' mode='dark'>
